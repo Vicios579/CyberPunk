@@ -6,57 +6,72 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE cyberpunk;
 
-USE aquatech;
+drop database cyberpunk;
 
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+USE cyberpunk;
+
+CREATE TABLE Usuario (
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    email VARCHAR(45) UNIQUE NOT NULL,
+    genero CHAR (1) NOT NULL
+	CONSTRAINT chk_genero
+    CHECK (genero IN ('M', 'F')),
+    CPF CHAR(12) UNIQUE,
+    dtNasc DATE,
+    senha VARCHAR(25) NOT NULL
 );
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+INSERT INTO Usuario VALUES 
+(DEFAULT, 'Vinicius', 'vinicius.cg@gmailcom', 'M', '458636078-07', '2006-10-02', '123'),
+(DEFAULT, 'Maynara', 'may.silva@gmailcom', 'F', '422638437-07', '2004-06-07', '12345');
+
+CREATE TABLE Modificações (
+    idModificação INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    descricao VARCHAR(45)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+INSERT INTO Modificações VALUES
+(DEFAULT, 'Sandevistan', 'Implante que desacelera o tempo'),
+(DEFAULT, 'Mr.Studd', 'Implante do mr.studd');
+
+
+CREATE TABLE ParteCorpo (
+    idParteCorpo INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+INSERT INTO ParteCorpo VALUES
+(DEFAULT, 'Cabeça'),
+(DEFAULT, 'Torso'),
+(DEFAULT, 'Braço');
+
+CREATE TABLE EstadoCorpo (
+    fkUsuario INT,
+    fkParteCorpo INT,
+    fkModificação INT,
+    estado TINYINT
+		CONSTRAINT estao_chk
+			CHECK (estado IN ('0', '1')),
+    dtModificacao VARCHAR(45),
+    PRIMARY KEY (fkUsuario, fkParteCorpo, fkModificação),
+    CONSTRAINT fk_estado_usuario
+        FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario),
+    CONSTRAINT fk_estado_parte
+        FOREIGN KEY (fkParteCorpo) REFERENCES ParteCorpo(idParteCorpo),
+    CONSTRAINT fk_estado_modificação
+        FOREIGN KEY (fkModificação) REFERENCES Modificações(idModificação)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
+INSERT INTO EstadoCorpo VALUES
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
+(2, 1, 2, 1, DEFAULT),
+(2, 2, 1, 1, DEFAULT);
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+SELECT count(estado) FROM Usuario as u
+    JOIN estadoCorpo as e ON e.fkUsuario = u.idUsuario
+    WHERE fkusuario = 1
+    AND estado = 1;
