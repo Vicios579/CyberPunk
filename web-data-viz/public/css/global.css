@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap");
+
+/* Estilos de classe Globais  */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	list-style: none;
+	font-family: orbitron;
+	font-weight: 500;
+}
+
+html {
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scrollbar-color: #ff003c #050a0e;
+}
