@@ -19,21 +19,9 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
+                        res.json(resultadoAutenticar)
 
-                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
-                                    res.json({
-                                        idUsuario: resultadoAutenticar[0].idUsuario,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        // aquarios: resultadoAquarios
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }
-                            })
+                        
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -58,7 +46,7 @@ function cadastrar(req, res) {
     var dtNasc = req.body.dtNascServer;
     var cpf = req.body.cpfServer;
     var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+    var senha = req.body.senhaServer; 
 
 
     // var fkEmpresa = req.body.idEmpresaVincularServer;

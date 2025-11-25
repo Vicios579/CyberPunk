@@ -1,0 +1,287 @@
+body {
+   height: 100dvh;
+   align-items: center;
+   background-color: #050A0E;
+}
+
+.dashboard-wrapper {
+   max-width: 1000px;
+   height: 100%;
+   padding: 40px 100px 0 100px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.dashboard-title {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 5px;
+   margin-bottom: 40px;
+}
+
+.dashboard-title h1 {
+   font-size: 18px;
+   color: #FF003C;
+   text-shadow: 0 0 5px #FF003C;
+}
+
+.dashboard-title p {
+   font-size: 12px;
+   color: #00F0FF;
+}
+
+.implants-visualizer {
+   width: 100%;
+   height: 45%;
+   display: flex;
+   gap: 20px;
+}
+
+.implants-visualizer > div {
+   width: 100%;
+   height: 100%;
+   border-radius: 10px;
+   padding: 15px;
+}
+
+.body-anatomy {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 25px;
+   flex-grow: 1;
+   border: 2px solid #FF003C;
+   background: linear-gradient(45deg, transparent, #ff003c26, transparent);
+}
+
+.body-anatomy h2 {
+   font-size: 14px;
+   padding-bottom: 5px;
+   color: #FF003C;
+   border-bottom: 2px solid #FF003C;
+}
+
+.body-visualizer {
+   width: 80%;
+   height: 80%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 5px;
+   border: 1px solid #FF003C;
+   background-color: #050A0E;
+}
+
+.body-visualizer svg {
+   width: 95%;
+   height: 95%;
+   fill: white;
+}
+
+.implants-list {
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   flex-grow: 1;
+   border: 2px solid #00F0FF;
+   background: linear-gradient(45deg, transparent, #00F0FF26, transparent);
+   scrollbar-color: #00F0FF transparent;
+}
+
+.implants-list-buttons {
+   display: flex;
+   align-items: center;
+   padding: 5px;
+   border-radius: 5px;
+   border: 1px solid #00F0FF;
+}
+
+.implants-list-buttons button {
+   padding: 5px;
+   flex-grow: 1;
+   font-size: 10px;
+   font-weight: 600;
+   border: 0;
+   color: #FCEE09;
+   border-radius: 2.5px;
+   background-color: transparent;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.implants-list-buttons button:hover {
+   opacity: 0.5;
+}
+
+.implants-list-buttons .button-selected {
+   color: #050A0E;
+   background-color: #00F0FF;
+}
+
+.implants-list ul {
+   max-height: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   overflow-y: auto;
+}
+
+.implants-list ul li {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid #00F0FF;
+   background-color: #00F0FF26;
+}
+
+.implants-list ul li p:nth-of-type(1) {
+   font-size: 12px;
+   font-weight: 700;
+   color: #FF003C;
+}
+
+.implants-list ul li p:nth-of-type(2) {
+   font-size: 10px;
+   color: #FCEE09;
+}
+
+.implants-list ul li button {
+   background-color: #FF003C;
+   color: #FCEE09;
+   width: 100px;
+   border: none;
+   cursor: pointer;
+   align-self: flex-end;
+}
+
+#Implantes li {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   gap: 5px;
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid #00F0FF;
+   background-color: #00F0FF26;
+}
+#Implantes li div {
+   display: flex;
+   flex-direction: column;
+   text-align: start;
+   align-items: flex-start;
+   gap: 10px;
+}
+
+.implant-description {
+   width: 100%;
+   padding: 10px 15px;
+   border-radius: 10px;
+   border: 1px solid #FF003C;
+   background: linear-gradient(45deg, transparent, #ff003c26, transparent);
+   margin-top: 20px;
+}
+
+.implant-title {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding-bottom: 10px;
+   border-bottom: 2px solid #FF003C;
+}
+
+.implant-title h3 {
+   font-size: 14px;
+   color: #FF003C;
+   font-weight: 600;
+}
+
+.implant-title span {
+   font-size: 8px;
+   font-weight: 600;
+   color: #FCEE09;
+   padding: 5px 10px;
+   border-radius: 5px;
+   border: 2px solid #00F0FF;
+   background-color: #050A0E;
+}
+
+.implant-details {
+   display: flex;
+   justify-content: space-between;
+   padding: 15px 5px;
+   color: #FCEE09;
+}
+
+.implant-details li {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 2.5px;
+   font-size: 10px;
+}
+
+.implant-details li p:nth-of-type(1) {
+   font-weight: 700;
+   color: #FF003C;
+}
+
+.implant-text {
+   margin-top: 5px;
+   display: block;
+   color: #FCEE09;
+   font-size: 12px;
+   padding: 10px;
+   border-left: 2px solid #00F0FF;
+   background-color: #00eeff26;
+}
+
+.implant-perks {
+   display: flex;
+   justify-content: space-between;
+   gap: 15px;
+   margin-top: 20px;
+}
+
+.implant-perks li {
+   flex-grow: 1;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 5px;
+   font-size: 12px;
+   padding: 5px 10px;
+   border: 1px solid #FF003C;
+   border-radius: 5px;
+   background-color: #FF003C26;
+}
+
+.implant-perks li p:nth-of-type(1) {
+   color: #FF003C;
+   font-weight: 700;
+}
+
+.implant-perks li p:nth-of-type(2) {
+   color: #FCEE09;
+   font-size: 10px;
+}
+
+#Implantes li div, #Implantes li div p{
+   pointer-events: none;
+   user-select: none;
+}
+
+#Implantes li div button{
+   pointer-events: all;
+   user-select: none;
+}
+
+#ImplantesInstalados li div, #ImplantesInstalados li div p {
+   pointer-events: none;
+   user-select: none;
+}

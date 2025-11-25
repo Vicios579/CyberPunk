@@ -9,7 +9,7 @@
    <link rel="stylesheet" href="./css/login.css" />
    <title>Login</title>
 </head>
-<body>
+<body> 
    <div class="header">
       <a href="./index.html"><img src="./Assets/logos/logo_preta.svg" alt="Logo Cyberpunk" class="logo" /></a>
 
@@ -25,43 +25,53 @@
          <p>Acesse seu sistema de implantes</p>
       </div>
 
-      <form>
+      <form onsubmit="submitado(event)">
          <div>
             <label for="email">E-MAIL</label>
             <input type="text" name="email" id="email">
          </div>
          <div>
-            <label for="password">SENHA</label>
-            <input type="text" name="password" id="password">
+            <label for="senha">SENHA</label>
+            <input type="text" name="senha" id="senha">
             <i class="fa-solid fa-eye"></i>
          </div>
  
-         <button>ENTRAR</button>
+         <button type="submit" onclick="entrar()">ENTRAR</button>
       </form>
 
       <p>Primeiro acesso? <a href="./cadastro.html">Registre-se aqui</a></p>
    </div>
+
+   <div class="footer">
+         <img src="./Assets/logos/logo_vermelha.svg" alt="">
+         <div>
+            <p>IDEALIZADO E DESENVOLVIDO POR VINICIUS C.G</p>
+            <p>SPTECH - 2025</p>
+         </div>
+      </div>
 
 </body>
 </html>
 
 <script>
 
+    function submitado(event) {
+    event.preventDefault()
+  }
+
 
     function entrar() {
-        aguardar();
 
-        var emailVar = input_email.value;
-        var senhaVar = input_senha.value;
+        var emailVar = email.value;
+        var senhaVar = senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+            alert('Verifique os campos vazios.')
             return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
+            // cardErro.style.display = "block"
+            // mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            // finalizarAguardar();
+            // return false;
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -85,24 +95,19 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json[0].idUsuario;
+                    sessionStorage.EMAIL_USUARIO = json[0].email;
+                    sessionStorage.NOME_USUARIO = json[0].nome;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location.href = "dashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
 
             } else {
-
+                alert('Login Inválido, tente novamente.')
                 console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
             }
 
         }).catch(function (erro) {
@@ -110,10 +115,6 @@
         })
 
         return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
     }
 
 </script>
