@@ -5,14 +5,22 @@ body {
    background-size: cover;
 }
 
+.cadastro-wrapper {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-grow: 1;
+}
+
 .cadastro-card {
-   min-width: 400px;
-   min-height: 450px;
-   padding: 30px;
-   margin: 100px 0px;
-   align-self: center;
+   width: 100%;
+   max-width: 750px;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   padding: 15px 25px;
    position: relative;
-   z-index: 1;
    filter: drop-shadow(0 0 5px #ff003c) drop-shadow(0 0 5px #ff003c);
 }
 
@@ -33,10 +41,8 @@ body {
 }
 
 .cadastro-card-title {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: 0px;
+   align-self: center;
+   text-align: center;
 }
 
 .cadastro-card-title h1 {
@@ -46,22 +52,44 @@ body {
 
 .cadastro-card-title p {
    color: #00F0FF;
-   font-size: 12px;
+   font-size: 10px;
 }
 
 .cadastro-card form {
-   margin-top: 45px;
+   width: 100%;
+   display: flex;
+}
+
+.cadastro-card form > div {
    display: flex;
    flex-direction: column;
-   gap: 15px;
+   gap: 10px;
+   flex: 1;
+   min-width: 0;
 }
 
-.info-areas {
-    display: flex;
-    flex-direction: row;
+.cadastro-card form .personal-info {
+   padding-right: 20px;
+   border-right: 2px solid #ff003c;
 }
 
-.cadastro-card form div {
+.cadastro-card form .personal-info > div:nth-of-type(2) {
+   flex-direction: row;
+}
+
+.cadastro-card form .account-info {
+   padding-left: 20px;
+}
+
+.cadastro-card form > div h2 {
+   padding-bottom: 10px;
+   font-size: 12px;
+   color: #ff003c;
+   text-shadow: 0 0 5px #ff003c;
+   border-bottom: 2px solid #00F0FF;
+}
+
+.cadastro-card form > div > div {
    display: flex;
    flex-direction: column;
    gap: 10px;
@@ -69,69 +97,76 @@ body {
    position: relative;
 }
 
-.cadastro-card form div label {
-   font-size: 12px;
+.cadastro-card form > div > div label {
+   font-size: 10px;
 }
 
-.cadastro-card form div input {
-   padding: 10px;
-   border-radius: 5px;
-   font-size: 12px;
-   outline: 0;
-   color: #FCEE09;
-   border: 1px solid #00F0FF;
-   background-color: #050a0e;
-}
-
-.cadastro-card form div select {
-   padding: 10px;
-   border-radius: 5px;
-   font-size: 12px;
-   outline: 0;
-   color: #FCEE09;
-   border: 1px solid #00F0FF;
-   background-color: #050a0e;
-}
-
-.cadastro-card form div:nth-of-type(2) input {
-   padding: 10px 30px 10px 10px;
-}
-
-.cadastro-card form div i {
+.cadastro-card form > div > div i {
    position: absolute;
-   top: 38px;
+   top: 29px;
    right: 10px;
-   font-size: 12px;
+   font-size: 10px;
    cursor: pointer;
+   transition: 0.3s;
 }
 
-.cadastro-card form button {
-   margin-top: 15px;
-   border: 0;
-   padding: 10px;
-   font-weight: 600;
+.cadastro-card form > div > div i:hover {
+   opacity: 0.5;
+}
+
+.cadastro-card form > div > div input, .cadastro-card form > div > div > div select {
+   padding: 4px 5px;
    border-radius: 5px;
+   font-size: 12px;
+   outline: 0;
+   color: #FCEE09;
+   border: 1px solid #00F0FF;
+   background-color: #050a0e;
+}
+
+.cadastro-card form > div > div input::placeholder {
+   color: #fcf00977;
+}
+
+.cadastro-card form > div > div > div select {
+   font-size: 10px;
+}
+
+.cadastro-card form > div > div > div {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.register-button {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   text-align: center;
+}
+
+.register-button button {
+   align-self: center;
+   border-radius: 5px;
+   padding: 10px 50px;
    color: #050a0e;
    background-color: #ff003c;
+   font-size: 12px;
+   font-weight: 600;
+   border: 0;
    transition: 0.3s;
    cursor: pointer;
 }
 
-.cadastro-card form button:hover {
+.register-button button:hover {
    scale: 1.05;
 }
 
-.cadastro-card > p {
+.register-button p {
+   font-size: 10px;
    color: #ff003c;
-   font-size: 12px;
-   margin-top: 15px;
-   text-align: center;
 }
 
-.cadastro-card > p a {
+.register-button p span {
    color: #00F0FF;
-}
-
-.cadastro-card > p a:hover {
-   text-decoration: underline;
 }

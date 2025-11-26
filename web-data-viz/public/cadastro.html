@@ -19,68 +19,84 @@
 			</button>
 		</div>
 
-		<div class="cadastro-card">
-			<div class="cadastro-card-title">
-				<h1 class="text-highlight-red">CADASTRO</h1>
-				<p>Crie sua conta no sistema de implantes</p>
-			</div>
-
-			<form onsubmit="submitado(event)">
-				<div class="info-areas">
-					<div class="personal-info">
-						<p>INFORMAÇÕES PESSOAIS</p>
-						<div>
-							<label for="nome">NOME COMPLETO</label>
-							<input type="text" name="nome" id="nome" />
-						</div>
-						<div>
-							<div>
-								<label for="genero">GENERO</label>
-								<select name="genero" id="genero">
-									<option disabled selected value="#">SELECIONE UMA OPÇÃO</option>
-									<option value="M">M</option>
-									<option value="F">F</option>
-								</select>
-							</div>
-							<div>
-								<label for="dtnasc">DATA NASCIMENTO</label>
-								<input type="text" name="dtnasc" id="dtnasc" />
-							</div>
-						</div>
-						<div>
-							<label for="cpf">CPF</label>
-							<input type="text" name="cpf" id="cpf" />
-						</div>
-					</div>
-
-					<div class="account-info">
-						<p>INFORMAÇÕES DA CONTA</p>
-						<div>
-							<label for="email">E-MAIL</label>
-							<input type="text" name="email" id="email" />
-						</div>
-						<div>
-							<label for="senha">SENHA</label>
-							<input type="text" name="senha" id="senha" />
-							<i class="fa-solid fa-eye"></i>
-						</div>
-						<div>
-							<label for="senha_confirma">CONFIRME A SUA SENHA</label>
-							<input type="text" name="senha_confirma" id="senha_confirma" />
-							<i class="fa-solid fa-eye"></i>
-						</div>
-					</div>
-
-					<button type="submit" onclick="cadastrar()">ENTRAR</button>
-				</div>
-			</form>
-		</div>
+      <div class="cadastro-wrapper">
+         <div class="cadastro-card">
+            <div class="cadastro-card-title">
+               <h1 class="text-highlight-red">CADASTRO</h1>
+               <p>Crie sua conta no sistema de implantes</p>
+            </div>
+   
+            <form>
+               <div class="personal-info">
+                  <h2>INFORMAÇÕES PESSOAIS</h2>
+                  <div>
+                     <label for="nome">NOME COMPLETO</label>
+                     <input type="text" name="nome" id="nome">
+                  </div>
+                  <div>
+                     <div>
+                        <label for="nome">GÊNERO</label>
+                        <select name="genero" id="genero">
+                           <option disabled selected value="#">SELECIONE UMA OPÇÃO</option>
+                           <option value="M">M</option>
+                           <option value="F">F</option>
+                        </select>
+                     </div>
+                     <div>
+                        <label for="nome">DATA DE NASCIMENTO</label>
+                        <input type="date" name="dtnasc" id="dtnasc">
+                     </div>
+                  </div>
+                  <div>
+                     <label for="nome">CPF</label>
+                     <input type="text" name="cpf" id="cpf" maxlength="14" placeholder="000.000.000-00">
+                  </div>
+               </div>
+   
+               <div class="account-info">
+                  <h2>INFORMAÇÕES DA CONTA</h2>
+                  <div>
+                     <label for="nome">E-MAIL</label>
+                     <input type="email" name="email" id="email">
+                  </div>
+                  <div>
+                     <label for="senha">SENHA</label>
+                     <input type="password" name="senha" id="senha" >
+                     <i onclick="mostrarSenha(event)" class="fa-solid fa-eye"></i>
+                  </div>
+                  <div>
+                     <label for="nome">CONFIRMAR SENHA</label>
+                     <input type="password" name="senha_confirma" id="senha_confirma" >
+                     <i onclick="mostrarSenha(event)" class="fa-solid fa-eye"></i>
+                  </div>
+               </div>
+            </form>
+   
+            <div class="register-button">
+               <button onclick="cadastrar()">CADASTRAR</button>
+               <p>
+                  Já tem uma conta?
+                  <a href="./login.html"><span>Faça login aqui</span></a>
+               </p>
+            </div>
+         </div>
+      </div>
 	</body>
 </html>
 
 <script>
-   function submitado(event) {
-      event.preventDefault()
+   function mostrarSenha(event) {
+      var input = event.target.parentElement.children[1]
+      var currentValue = input.value
+      var eyeIcon = event.target
+
+      if (input.type == "password") {
+         input.type = "text"
+         eyeIcon.className = "fa-solid fa-eye-slash"
+      } else {
+         input.type = "password"
+         eyeIcon.className = "fa-solid fa-eye"
+      }
    }
 
 	function cadastrar() {
@@ -94,8 +110,26 @@
 
 		// Verificando se há algum campo em branco
 		if (nomeVar == "" || emailVar == "" || generoVar == "#" || cpfVar == "" || dtNascVar == "" || senhaVar == "" || senhaConfirmacaoVar == "") {
-			alert("inputs em branco, erro")
+         alert("inputs em branco, erro")
+         return
 		}
+
+      // Validando a senha
+      var specialCharactes = ["!", '"', "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "{", "|", "}", "~"]
+
+      for (var i = 0; i < specialCharactes.length; i++) {
+         if (senhaVar.includes(specialCharactes[i])) break
+
+         if (i == specialCharactes.length - 1) {
+            alert("A senha precisa conter pelo menos 8 caracteres, uma letra maiúscula e um caractere especial")
+            return
+         }
+      }
+
+      if (senhaVar.length < 8 || senhaVar == senhaVar.toLowerCase() || senhaVar != senhaConfirmacaoVar) {
+         alert("A senha precisa conter pelo menos 8 caracteres, uma letra maiúscula e um caractere especial")
+         return
+      }
 
       fetch("/usuarios/cadastrar", {
          method: "POST",
@@ -117,7 +151,7 @@
             resposta.json().then(function(json) {
                sessionStorage.ID_USUARIO = json[0].idUsuario;
 
-               const idUsuarioLogado = sessionStorage.ID_USUARIO
+               var idUsuarioLogado = sessionStorage.ID_USUARIO
                console.log("session storage definido para:", idUsuarioLogado)
    
                fetch(`/usuarios/definir/${idUsuarioLogado}`, {method: "POST"}).then(function(data) {
@@ -133,6 +167,10 @@
       }).catch(function(erro) {
          console.log(`#ERRO: ${erro}`)
       })
+
+      setTimeout(function() {
+         window.location.href = "login.html"
+      }, 2000)
 
       return false
    }

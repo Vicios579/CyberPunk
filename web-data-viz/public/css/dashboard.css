@@ -137,6 +137,11 @@ body {
    border-radius: 5px;
    border: 1px solid #00F0FF;
    background-color: #00F0FF26;
+   cursor: pointer;
+}
+
+.implants-list ul li:hover { 
+   opacity: 0.8;
 }
 
 .implants-list ul li div:nth-of-type(1) {
@@ -281,6 +286,12 @@ body {
    pointer-events: all;
    user-select: none;
    cursor: pointer;
+   transition: all 0.3s;
+}
+
+#Implantes li div button:hover{
+   scale: 1.2;
+
 }
 
 #ImplantesInstalados li div, #ImplantesInstalados li div p {
