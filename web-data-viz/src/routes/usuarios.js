@@ -12,4 +12,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/definir/:id", function (req, res) {
+    usuarioController.definirEstadoCorpo(req, res);
+});
+
 module.exports = router; 

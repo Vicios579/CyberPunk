@@ -71,11 +71,15 @@
             </li>
             <li>
                <p>STATUS</p>
-               <p id="condicao">${condicao}</p>
+               <p id="condicao">${status}</p>
             </li>
             <li>
                <p>LOCALIZAÇÃO</p>
                <p id="localizacao">${localização}</p>
+            </li>
+            <li>
+               <p>DATA DE INSTALAÇÃO</p>
+               <p id="dataInstalacao">${dataInstalação}</p>
             </li>
          </ul>
 
@@ -106,39 +110,46 @@
 </body>
 </html>
 <script>
-var usuario = sessionStorage.NOME_USUARIO;
 
-p_ola.innerHTML = `Olá, ${usuario}.`
+   var usuario = sessionStorage.NOME_USUARIO;
 
-var vetor = []
+     p_ola.innerHTML = `Olá, ${usuario}.`
+   
 
-var ListaImplantes = {
-   instalados: [],
-   instalar: []
-}
-
-function selecionar() {
-   instalar.classList.toggle('button-selected');
-   instalados.classList.toggle('button-selected');
-    
-   if (ImplantesInstalados.style.display == 'none') {
-      Implantes.style.display = "none";
-      ImplantesInstalados.style.display = "flex";
-   } else {
-      ImplantesInstalados.style.display = "none";
-      Implantes.style.display = "flex";
+     var ListaImplantes = {
+   instalados:[],
+   instalar:[
+      {
+      nome:'Sandevistan',
+      descricao:'Implante que desacelera o tempo',
+      categoria:'Neural Enchancement',
+      preco:2000,
+      localizacao:'Sistema Nervoso Central',
+      fabricante:'Arasaka',
+      condicao:98,
+      dataInstalacao:'2025-11-24'
+   }, {
+      nome:'Gorilla Arms',
+      descricao:'Braços robóticos que exercem força imensa',
+      categoria:'Cyber Limb',
+      preco:1300,
+      localizacao:'Braços',
+      fabricante:'Arasaka',
+      condicao:85,
+      dataInstalacao:'2025-11-20'
    }
+]
 }
 
 function atualizarDescricao(sessaoAtual, ImplanteEscolhido) {
    var categoriaLista
+   // console.log(sessaoAtual)
 
    if (sessaoAtual.toLowerCase() == 'instalados') {
       categoriaLista = ListaImplantes.instalados
    } else {
       categoriaLista = ListaImplantes.instalar
    }
-
    for(var i = 0; i < categoriaLista.length; i++) {
       if (categoriaLista[i].nome == ImplanteEscolhido) {
          nomeImplante.innerText = categoriaLista[i].nome
@@ -146,103 +157,225 @@ function atualizarDescricao(sessaoAtual, ImplanteEscolhido) {
          fabricante.innerText = categoriaLista[i].fabricante
          condicao.innerText = `${categoriaLista[i].condicao}%`
          localizacao.innerText = categoriaLista[i].localizacao
+         dataInstalacao.innerText = categoriaLista[i].dataInstalacao
          descricao.innerText = categoriaLista[i].descricao
       }
    }
 }
 
-function adicionar() {
-   ImplantesInstalados.innerHTML = ""
-
+function atualizar() {
+   ImplantesInstalados.innerHTML = ''
    if (ListaImplantes.instalados.length > 0) {
-      for (var i = 0; i < ListaImplantes.instalados.length; i++) {
-         ImplantesInstalados.innerHTML += `
-            <li onclick="escolher(event)">
-               <div>
-                  <p>${ListaImplantes.instalados[i].nome}</p>
-                  <p>${ListaImplantes.instalados[i].categoria}</p>
-               </div>
-            </li>
-         `
-      }
-   }
-
-   if (ListaImplantes.instalar.length > 0) {
-      for (var i = 0; i < ListaImplantes.instalar.length; i++) {
-         Implantes.innerHTML += `
-            <li onclick="escolher(event)">
-               <div>
-                  <p>${ListaImplantes.instalar[i].nome}</p>   
-                  <p>${ListaImplantes.instalar[i].categoria}</p>   
-               </div>
-               <div>
-                  <p>€$${ListaImplantes.instalar[i].preco}</p>
-                  <button>Instalar</button>
-               </div>
-            </li>
-         `
-      }
-   }   
+   for(var i = 0; i < ListaImplantes.instalados.length; i++) {
+   ImplantesInstalados.innerHTML += `
+               <li onclick="escolher(event)">
+                  <div>
+                     <p>${ListaImplantes.instalados[i].nome}</p>
+                     <p>${ListaImplantes.instalados[i].categoria}</p>
+                  </div>
+               </li>
+   `
+ }
 }
-adicionar()
+for(var i = 0; i < ListaImplantes.instalar.length; i++) {
+   Implantes.innerHTML += `
+               <li onclick="escolher(event)">
+                  <div>
+                    <p>${ListaImplantes.instalar[i].nome}</p>
+                    <p>${ListaImplantes.instalar[i].categoria}</p>
+                  </div>
+                  <div>
+                    <p>€$${ListaImplantes.instalar[i].preco}</p>
+                    <button>Instalar</button>
+                  </div>
+               </li>
+   `
+}   
+}
 
 function escolher(abacaxi) {
-   var buttons = list_buttons.children
-   var sessaoAtual
-   var ImplanteEscolhido
+var sessaoAtual
+var ImplanteEscolhido = ''
 
-   for (var i = 0; i < buttons.length; i++) {
-      if (buttons[i].classList.contains("button-selected")) {
-         sessaoAtual = buttons[i].innerText
-      }
+
+for(var i = 0; i < list_buttons.children.length; i++) {
+   if (list_buttons.children[i].classList.contains('button-selected')) {
+      sessaoAtual = list_buttons.children[i].innerText 
    }
+}
 
-   Implantes.innerHTML = ""
-   
-   if (abacaxi.target.localName == "li") {
-      ImplanteEscolhido = abacaxi.target.children[0].firstElementChild.innerText
+
+Implantes.innerHTML = ''
+   if (abacaxi.target.localName == 'li') {
+      ImplanteEscolhido = abacaxi.target.children[0].firstElementChild.innerText;
+      
       atualizarDescricao(sessaoAtual, ImplanteEscolhido)
-      adicionar()
+      atualizar()
    } else {
-      var listaTemp = []
-      ImplanteEscolhido = abacaxi.target.parentElement.parentElement.children[0].firstElementChild.innerText
 
-      for (var i = 0; i < ListaImplantes.instalar.length; i++) {
+      
+      var ListaTemp = []
+      ImplanteEscolhido = abacaxi.target.parentElement.parentElement.children[0].firstElementChild.innerText;
+
+      for(var i = 0; i < ListaImplantes.instalar.length; i++) {
          if (ListaImplantes.instalar[i].nome == ImplanteEscolhido) {
             ListaImplantes.instalados.push(ListaImplantes.instalar[i])
          } else {
-            listaTemp.push(ListaImplantes.instalar[i])
+            ListaTemp.push(ListaImplantes.instalar[i])
          }
-      }
-
-      ListaImplantes.instalar = listaTemp
+      } 
+      ListaImplantes.instalar = ListaTemp;
+      atualizar()
       atualizarDescricao(sessaoAtual, ImplanteEscolhido)
-      adicionar()
-   }
+   }  
 }
 
-function BuscarImplantes() {
-   fetch('/implantes/todos').then(function(data){
-      data.json().then (function (result) {
-         ListaImplantes.instalar = result
-         console.log(ListaImplantes)
-         adicionar()
-      })
-   }) 
-}
+function selecionar() {
+        instalar.classList.toggle('button-selected');
+        instalados.classList.toggle('button-selected');
 
-BuscarImplantes()
+        
+        if (ImplantesInstalados.style.display == 'none') {
+            Implantes.style.display = "none";
+            ImplantesInstalados.style.display = "flex";
+        } else {
+            ImplantesInstalados.style.display = "none";
+            Implantes.style.display = "flex";
+        }
 
-function BuscarImplantesUsuario() {
-   const idUsuarioLogado = sessionStorage.ID_USUARIO;
-   fetch(`/implantes/implantesUsuario/${idUsuarioLogado}`).then(function(data){
-      data.json().then (function (result) {
-         console.log(result)
-         
-      })
-   }) 
-}
+    }
 
-BuscarImplantesUsuario()
+    atualizar()
+
+
+
+   //    function buscarDados() {
+   //    fetch('https://viacep.com.br/ws/01001000/json/')
+   // .then(function (res) {
+   //    console.log(res)
+
+   //    res.json()
+   //    .then(function (dados) {
+   //       console.log(dados);
+   //       vetor = dados;
+   //    })
+   //    .catch(function (err) {
+   //       console.log(err);
+   //    })
+   // })
+   // .catch(function (err) {
+   //       console.log(err);
+   //    });
+   // }
+    
+
+    
+
+     
+
+   //   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+   //  window.onload = exibirAquariosDoUsuario();
+
+   //  function exibirAquariosDoUsuario() {
+       
+   //          
+
+   //          obterDadosGrafico(idUsuarioLogado)
+   //      };
+
+   //  function obterDadosGrafico(idUsuarioLogado) {
+
+        
+   //      fetch(`/estado/usuario/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+   //          if (response.ok) {
+   //              response.json().then(function (resposta) {
+   //                  console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+   //                  resposta.reverse();
+
+   //                  plotarGrafico(resposta, idUsuario);
+   //                  console.log(resposta)
+
+   //              });
+   //          } else {
+   //              console.error('Nenhum dado encontrado ou erro na API');
+   //          }
+   //      })
+   //          .catch(function (error) {
+   //              console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+   //          });
+   //  }
+
+   //  function plotarGrafico(resposta, idUsuario) {
+
+   //      console.log('iniciando plotagem do gráfico...');
+
+   //      // Criando estrutura para plotar gráfico - labels
+   //      let labels = [];
+
+   //      // Criando estrutura para plotar gráfico - dados
+   //      let dados = {
+   //          labels: labels,
+   //          datasets: [{
+   //              label: 'Umidade',
+   //              data: [],
+   //              fill: false,
+   //              borderColor: 'rgb(75, 192, 192)',
+   //              tension: 0.1
+   //          },
+   //          {
+   //              label: 'Temperatura',
+   //              data: [],
+   //              fill: false,
+   //              borderColor: 'rgb(199, 52, 52)',
+   //              tension: 0.1
+   //          }]
+   //      };
+
+   //      console.log('----------------------------------------------')
+   //      console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+   //      console.log(resposta)
+
+   //      // Inserindo valores recebidos em estrutura para plotar o gráfico
+   //      for (i = 0; i < resposta.length; i++) {
+   //          var registro = resposta[i];
+   //          labels.push(registro.momento_grafico);
+   //          dados.datasets[0].data.push(registro.umidade);
+   //          dados.datasets[1].data.push(registro.temperatura);
+   //      }
+
+   //      console.log('----------------------------------------------')
+   //      console.log('O gráfico será plotado com os respectivos valores:')
+   //      console.log('Labels:')
+   //      console.log(labels)
+   //      console.log('Dados:')
+   //      console.log(dados.datasets)
+   //      console.log('----------------------------------------------')
+
+   //      // Criando estrutura para plotar gráfico - config
+   //      const config = {
+   //          type: 'donut',
+   //          data: dados,
+   //      };
+
+   //      // Adicionando gráfico criado em div na tela
+   //      let myChart = new Chart(
+   //          document.getElementById(`myChartCanvas${idUsuario}`),
+   //          config
+   //      );
+
+   //      setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+   //  }
+
+
+
+
+
+
+
+
+
+
+
 
 </script>

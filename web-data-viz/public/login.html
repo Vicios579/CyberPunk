@@ -54,67 +54,55 @@
 </html>
 
 <script>
+   function submitado(event) {
+      event.preventDefault()
+   }
 
-    function submitado(event) {
-    event.preventDefault()
-  }
+   function entrar() {
+      var emailVar = email.value;
+      var senhaVar = senha.value;
 
+      if (emailVar == "" || senhaVar == "") {
+         alert('Verifique os campos vazios.')
+         return false;
+      }
 
-    function entrar() {
+      console.log("FORM LOGIN: ", emailVar);
+      console.log("FORM SENHA: ", senhaVar);
 
-        var emailVar = email.value;
-        var senhaVar = senha.value;
+      fetch("/usuarios/autenticar", {
+         method: "POST",
+         headers: {"Content-Type": "application/json"},
+         body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar
+         })
+      }).then(function(resposta) {
+         console.log("ESTOU NO THEN DO entrar()!") 
 
-        if (emailVar == "" || senhaVar == "") {
-            alert('Verifique os campos vazios.')
-            return false;
-            // cardErro.style.display = "block"
-            // mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            // finalizarAguardar();
-            // return false;
-        }
+         if (resposta.ok) {
+            console.log(resposta)
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+            resposta.json().then(function(json) {
+               console.log(json);
+               console.log(JSON.stringify(json));
 
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
+               sessionStorage.EMAIL_USUARIO = json[0].email;
+               sessionStorage.NOME_USUARIO = json[0].nome;
+
+               // apenas para exibir o loading
+               setTimeout(function () {
+                  window.location.href = "dashboard.html";
+               }, 1000);
             })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+         } else {
+            alert('Login Inválido, tente novamente.')
+            console.log("Houve um erro ao tentar realizar o login!");
+         }
+      }).catch(function (erro) {
+         console.log(erro);
+      })
 
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.ID_USUARIO = json[0].idUsuario;
-                    sessionStorage.EMAIL_USUARIO = json[0].email;
-                    sessionStorage.NOME_USUARIO = json[0].nome;
-
-                    setTimeout(function () {
-                        window.location.href = "dashboard.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-                alert('Login Inválido, tente novamente.')
-                console.log("Houve um erro ao tentar realizar o login!");
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-
+      return false
+   }
 </script>

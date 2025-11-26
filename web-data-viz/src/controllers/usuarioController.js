@@ -79,7 +79,14 @@ function cadastrar(req, res) {
     }
 }
 
+function definirEstadoCorpo(req, res) {
+    usuarioModel.definirEstadoCorpo(req.params.id).then((resultado) => {
+        res.status(200).json(resultado)
+    })
+};
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    definirEstadoCorpo
 }

@@ -1,190 +1,139 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <link rel="stylesheet" href="./css/global.css" />
-   <link rel="stylesheet" href="./css/style.css" />
-   <link rel="stylesheet" href="./css/cadastro.css" />
-   <title>Cadastro</title>
-</head>
-<body>
-   <div class="header">
-      <a href="./index.html"><img src="./Assets/logos/logo_preta.svg" alt="Logo Cyberpunk" class="logo" /></a>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="./css/global.css" />
+		<link rel="stylesheet" href="./css/style.css" />
+		<link rel="stylesheet" href="./css/cadastro.css" />
+		<title>Cadastro</title>
+	</head>
+	<body>
+		<div class="header">
+			<a href="./index.html"><img src="./Assets/logos/logo_preta.svg" alt="Logo Cyberpunk" class="logo" /></a>
 
-      <button>
-         <span></span>
-         <a href="./index.html">VOLTAR</a>
-      </button>
-   </div>
+			<button>
+				<span></span>
+				<a href="./index.html">VOLTAR</a>
+			</button>
+		</div>
 
-   <div class="cadastro-card">
-      <div class="cadastro-card-title">
-         <h1 class="text-highlight-red">CADASTRO</h1>
-         <p>Crie sua conta no sistema de implantes</p>
-      </div>
+		<div class="cadastro-card">
+			<div class="cadastro-card-title">
+				<h1 class="text-highlight-red">CADASTRO</h1>
+				<p>Crie sua conta no sistema de implantes</p>
+			</div>
 
-      <form onsubmit="submitado(event)">
-        <div class="info-areas">
-        <div class="personal-info">
-          <p>INFORMAÇÕES PESSOAIS</p>
-            <div>
-              <label for="nome">NOME COMPLETO</label>
-              <input type="text" name="nome" id="nome">
-            </div>
-          <div>
-            <div>
-              <label for="genero">GENERO</label>
-              <select name="genero" id="genero">
-                <option disabled selected value="#">SELECIONE UMA OPÇÃO</option>
-                <option value="M">M</option>
-                <option value="F">F</option>
-              </select>
-            </div>
-            <div>
-              <label for="dtnasc">DATA NASCIMENTO</label>
-              <input type="text" name="dtnasc" id="dtnasc">
-            </div>  
-         </div>
-          <div>
-              <label for="cpf">CPF</label>
-              <input type="text" name="cpf" id="cpf">
-          </div>
-        </div>
-         
-        <div class="account-info">
-          <p>INFORMAÇÕES DA CONTA</p>
-          <div>
-            <label for="email">E-MAIL</label>
-            <input type="text" name="email" id="email">
-          </div>
-          <div>
-            <label for="senha">SENHA</label>
-            <input type="text" name="senha" id="senha">
-            <i class="fa-solid fa-eye"></i>
-         </div>
-         <div>
-            <label for="senha_confirma">CONFIRME A SUA SENHA</label>
-            <input type="text" name="senha_confirma" id="senha_confirma">
-            <i class="fa-solid fa-eye"></i>
-         </div>
-        </div>
-         
-         <button type="submit" onclick="cadastrar()">ENTRAR</button>
-         </div>
-      </form>
-   </div>
+			<form onsubmit="submitado(event)">
+				<div class="info-areas">
+					<div class="personal-info">
+						<p>INFORMAÇÕES PESSOAIS</p>
+						<div>
+							<label for="nome">NOME COMPLETO</label>
+							<input type="text" name="nome" id="nome" />
+						</div>
+						<div>
+							<div>
+								<label for="genero">GENERO</label>
+								<select name="genero" id="genero">
+									<option disabled selected value="#">SELECIONE UMA OPÇÃO</option>
+									<option value="M">M</option>
+									<option value="F">F</option>
+								</select>
+							</div>
+							<div>
+								<label for="dtnasc">DATA NASCIMENTO</label>
+								<input type="text" name="dtnasc" id="dtnasc" />
+							</div>
+						</div>
+						<div>
+							<label for="cpf">CPF</label>
+							<input type="text" name="cpf" id="cpf" />
+						</div>
+					</div>
 
-</body>
+					<div class="account-info">
+						<p>INFORMAÇÕES DA CONTA</p>
+						<div>
+							<label for="email">E-MAIL</label>
+							<input type="text" name="email" id="email" />
+						</div>
+						<div>
+							<label for="senha">SENHA</label>
+							<input type="text" name="senha" id="senha" />
+							<i class="fa-solid fa-eye"></i>
+						</div>
+						<div>
+							<label for="senha_confirma">CONFIRME A SUA SENHA</label>
+							<input type="text" name="senha_confirma" id="senha_confirma" />
+							<i class="fa-solid fa-eye"></i>
+						</div>
+					</div>
+
+					<button type="submit" onclick="cadastrar()">ENTRAR</button>
+				</div>
+			</form>
+		</div>
+	</body>
 </html>
 
 <script>
+   function submitado(event) {
+      event.preventDefault()
+   }
 
-  function submitado(event) {
-    event.preventDefault()
-  }
+	function cadastrar() {
+      var nomeVar = nome.value
+		var emailVar = email.value
+		var generoVar = genero.value
+		var cpfVar = cpf.value
+		var dtNascVar = dtnasc.value
+		var senhaVar = senha.value
+		var senhaConfirmacaoVar = senha_confirma.value
 
-  function cadastrar() {
-    // aguardar();
+		// Verificando se há algum campo em branco
+		if (nomeVar == "" || emailVar == "" || generoVar == "#" || cpfVar == "" || dtNascVar == "" || senhaVar == "" || senhaConfirmacaoVar == "") {
+			alert("inputs em branco, erro")
+		}
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome.value;
-    var emailVar = email.value;
-    var generoVar = genero.value;
-    var cpfVar = cpf.value
-    var dtNascVar = dtnasc.value;
-    var senhaVar = senha.value;
-    var senhaConfirmacaoVar = senha_confirma.value;
+      fetch("/usuarios/cadastrar", {
+         method: "POST",
+         headers: {"Content-Type": "application/json"},
+         body: JSON.stringify({
+				nomeServer: nomeVar,
+				generoServer: generoVar,
+				dtNascServer: dtNascVar,
+				cpfServer: cpfVar,
+				emailServer: emailVar,
+				senhaServer: senhaVar,
+				senhaConfirmacaoServer: senhaConfirmacaoVar
+         })
+      }).then(function(resposta) {
+         alert("cadastrado com sucesso")
+         console.log("resposta: ", resposta)
 
+         if (resposta.ok) {
+            resposta.json().then(function(json) {
+               sessionStorage.ID_USUARIO = json[0].idUsuario;
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      generoVar == "#" ||
-      cpfVar == "" ||
-      dtNascVar == "" ||
-      senhaVar == "" ||
-      senhaConfirmacaoVar == ""
-    ) {
-      // cardErro.style.display = "block";
-      // mensagem_erro.innerHTML =
-      //   "(Mensagem de erro para todos os campos em branco)";
+               const idUsuarioLogado = sessionStorage.ID_USUARIO
+               console.log("session storage definido para:", idUsuarioLogado)
+   
+               fetch(`/usuarios/definir/${idUsuarioLogado}`, {method: "POST"}).then(function(data) {
+                  data.json().then(function(result) {
+                     console.log("deu certo?", result)
+                  })
+               })
+            })
 
-      // finalizarAguardar();
-      // return false;
-      alert('inputs em branco, erro')
-      console.log('inputs em branco, erro')
-    } else {
-      // setInterval(sumirMensagem, 5000);
-      alert('cadastrado com sucesso')
-    }
-
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
-    //     console.log("Código de ativação válido.");
-    //     break;
-    //   } else {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-    //     finalizarAguardar();
-    //   }
-    // }
-
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        generoServer: generoVar,
-        dtNascServer: dtNascVar,
-        cpfServer: cpfVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        senhaConfirmacaoServer: senhaConfirmacaoVar
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-          console.log('oi')
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location.href = "login.html";
-          }, "2000");
-
-          limparFormulario();
-        
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+         } else {
+            throw "Houve um erro ao tentar realizar o cadastro!"
+         }
+      }).catch(function(erro) {
+         console.log(`#ERRO: ${erro}`)
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        
-      });
 
-    return false;
-  }
-
-  // Listando empresas cadastradas 
-  
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
+      return false
+   }
 </script>

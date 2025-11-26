@@ -1,17 +1,17 @@
 body {
-   height: 100dvh;
-   align-items: center;
+   min-height: 100dvh;
    background-color: #050A0E;
 }
 
 .dashboard-wrapper {
-   max-width: 1000px;
    height: 100%;
-   padding: 40px 100px 0 100px;
+   padding-top: 70px;
+   padding-bottom: 15px;
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
+   overflow-y: auto;
 }
 
 .dashboard-title {
@@ -34,31 +34,31 @@ body {
 }
 
 .implants-visualizer {
-   width: 100%;
-   height: 45%;
+   width: 50%;
+   height: 270px;
    display: flex;
    gap: 20px;
 }
 
 .implants-visualizer > div {
-   width: 100%;
-   height: 100%;
+   flex: 1;
+   min-width: 0;
    border-radius: 10px;
-   padding: 15px;
+   padding: 10px;
 }
 
 .body-anatomy {
    display: flex;
    flex-direction: column;
    align-items: center;
-   gap: 25px;
+   gap: 15px;
    flex-grow: 1;
    border: 2px solid #FF003C;
    background: linear-gradient(45deg, transparent, #ff003c26, transparent);
 }
 
 .body-anatomy h2 {
-   font-size: 14px;
+   font-size: 10px;
    padding-bottom: 5px;
    color: #FF003C;
    border-bottom: 2px solid #FF003C;
@@ -102,7 +102,7 @@ body {
 .implants-list-buttons button {
    padding: 5px;
    flex-grow: 1;
-   font-size: 10px;
+   font-size: 8px;
    font-weight: 600;
    border: 0;
    color: #FCEE09;
@@ -139,46 +139,46 @@ body {
    background-color: #00F0FF26;
 }
 
-.implants-list ul li p:nth-of-type(1) {
-   font-size: 12px;
+.implants-list ul li div:nth-of-type(1) {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+}
+
+.implants-list ul li div:nth-of-type(1) p:nth-of-type(1) {
+   font-size: 10px;
    font-weight: 700;
    color: #FF003C;
 }
 
-.implants-list ul li p:nth-of-type(2) {
-   font-size: 10px;
-   color: #FCEE09;
+.implants-list ul li div:nth-of-type(1) p:nth-of-type(2) {
+   font-size: 9px;
+   color: #fcee09cc;
 }
 
-.implants-list ul li button {
-   background-color: #FF003C;
-   color: #FCEE09;
-   width: 100px;
-   border: none;
-   cursor: pointer;
-   align-self: flex-end;
-}
-
-#Implantes li {
+.implants-list ul li div:nth-of-type(2) {
    display: flex;
-   flex-direction: row;
    justify-content: space-between;
-   gap: 5px;
-   padding: 10px;
-   border-radius: 5px;
-   border: 1px solid #00F0FF;
-   background-color: #00F0FF26;
+   align-items: center;
 }
-#Implantes li div {
-   display: flex;
-   flex-direction: column;
-   text-align: start;
-   align-items: flex-start;
-   gap: 10px;
+
+.implants-list ul li div:nth-of-type(2) p {
+   font-size: 10px;
+   font-weight: 700;
+   color: #FCEE09;
+}
+
+.implants-list ul li div:nth-of-type(2) button {
+   padding: 2.5px 5px;
+   font-size: 8px;
+   color: #FCEE09;
+   background-color: #FF003C;
+   border: 0;
+   border-radius: 1px;
 }
 
 .implant-description {
-   width: 100%;
+   width: 70%;
    padding: 10px 15px;
    border-radius: 10px;
    border: 1px solid #FF003C;
@@ -190,12 +190,12 @@ body {
    display: flex;
    align-items: center;
    justify-content: space-between;
-   padding-bottom: 10px;
+   padding-bottom: 5px;
    border-bottom: 2px solid #FF003C;
 }
 
 .implant-title h3 {
-   font-size: 14px;
+   font-size: 12px;
    color: #FF003C;
    font-weight: 600;
 }
@@ -212,8 +212,9 @@ body {
 
 .implant-details {
    display: flex;
-   justify-content: space-between;
-   padding: 15px 5px;
+   justify-content: center;
+   gap: 140px;
+   padding: 10px 30px;
    color: #FCEE09;
 }
 
@@ -231,10 +232,9 @@ body {
 }
 
 .implant-text {
-   margin-top: 5px;
    display: block;
    color: #FCEE09;
-   font-size: 12px;
+   font-size: 10px;
    padding: 10px;
    border-left: 2px solid #00F0FF;
    background-color: #00eeff26;
@@ -244,7 +244,7 @@ body {
    display: flex;
    justify-content: space-between;
    gap: 15px;
-   margin-top: 20px;
+   margin-top: 10px;
 }
 
 .implant-perks li {
@@ -268,7 +268,7 @@ body {
 
 .implant-perks li p:nth-of-type(2) {
    color: #FCEE09;
-   font-size: 10px;
+   font-size: 8px;
 }
 
 #Implantes li div, #Implantes li div p{
@@ -279,6 +279,7 @@ body {
 #Implantes li div button{
    pointer-events: all;
    user-select: none;
+   cursor: pointer;
 }
 
 #ImplantesInstalados li div, #ImplantesInstalados li div p {

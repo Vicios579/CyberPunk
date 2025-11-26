@@ -24,7 +24,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var estadoRouter = require("./src/routes/estado");
-var carrosRouter = require("./src/routes/carros");
+var implantesRouter = require("./src/routes/implantes");
 ```
 
 ### Criando uma porta de entrada na api
