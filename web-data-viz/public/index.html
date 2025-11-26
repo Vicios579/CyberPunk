@@ -47,7 +47,7 @@
 
 			<div class="runners" id="runners">
 				<span class="dark-gradient-bar"></span>
-            <img src="../assets/logos/edgerunners_logo.svg" alt="">
+            <img src="./assets/logos/logo_edgerunners.svg" alt="">
             <div class="runners-carrossel-wrapper">
                <div class="runners-carrossel-card">
                   <div class="carrossel-header">
@@ -57,17 +57,13 @@
 
                   <div class="carrossel-content">
                      <div class="carrossel-slider">
-                        <i class="fa-solid fa-circle-chevron-left"></i>
-                        <div class="runners-carrossel-card carrossel-image"></div>
-                        <i class="fa-solid fa-circle-chevron-right"></i>
+                        <i onclick="trocarPersonagem('diminuir')" class="fa-solid fa-circle-chevron-left"></i>
+                        <div id="carrosselCard" class="runners-carrossel-card carrossel-image">
+                           <div id="carrosselImages" class="carrossel-images"></div>
+                        </div>
+                        <i onclick="trocarPersonagem('aumentar')" class="fa-solid fa-circle-chevron-right"></i>
                      </div>
-                     <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                     </ul>
+                     <ul id="carrosselCircles"></ul>
                   </div>
                </div>
             </div>
@@ -216,3 +212,41 @@
       </div>
 	</body>
 </html>
+
+<script>
+   var characters = ["david", "lucy", "rebecca", "maine", "pilar", "dorio", "kiwi"]
+   var characterIndex = 0
+   var characterPosition = 0
+   
+   for (var i = 0; i < characters.length; i++) {
+      carrosselImages.innerHTML += `<img src="./assets/characters/${characters[i]}.svg" alt="character">`
+
+      if (i == 0) {
+         carrosselCircles.innerHTML += `<li class="selected-circle"></li>`
+      } else {
+         carrosselCircles.innerHTML += `<li></li>`
+      }
+   }
+
+   carrosselImages.style.width = `${370 * characters.length}px`
+
+   function trocarPersonagem(action) {
+      if (action == "diminuir" && characterIndex > 0) {
+         characterIndex--
+         characterPosition += 370
+      }
+
+      if (action == "aumentar" && characterIndex < characters.length - 1) {
+         characterIndex++
+         characterPosition -= 370
+      }
+
+      carrosselImages.style.transform = `translateX(${characterPosition}px)`
+
+      for (let i = 0; i < carrosselCircles.children.length; i++) {
+         carrosselCircles.children[i].classList.remove("selected-circle")
+      }
+      
+      carrosselCircles.children[characterIndex].classList.add("selected-circle")
+   }
+</script>

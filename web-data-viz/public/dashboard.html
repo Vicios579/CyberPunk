@@ -58,7 +58,7 @@
          </div>
       </div>
 
-      <div class="implant-description">
+      <div class="implant-description" id="implant_desc">
          <div class="implant-title">
             <h3 id="nomeImplante">${nomeImplante}</h3>
             <span id="categoriaImplante">${categoriaImplante}</span>
@@ -202,6 +202,7 @@ function escolher(abacaxi) {
    if (abacaxi.target.localName == "li") {
       ImplanteEscolhido = abacaxi.target.children[0].firstElementChild.innerText
       atualizarDescricao(sessaoAtual, ImplanteEscolhido)
+      implant_desc.style.display = "block"
       adicionar()
    } else {
       var listaTemp = []

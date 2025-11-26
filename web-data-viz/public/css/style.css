@@ -177,7 +177,7 @@ e se inicia o runners
 	position: relative;
 }
 
-.runners img:nth-of-type(1) {
+.runners > img:nth-of-type(1) {
    width: 100px;
    position: absolute;
    top: 50px;
@@ -263,7 +263,19 @@ e se inicia o runners
 
 .carrossel-image {
 	max-width: 370px;
-	min-height: 230px;
+	max-height: 230px;
+   position: relative;
+   overflow: hidden;
+}
+
+.carrossel-images {
+   display: flex;
+   height: 100%;
+   transition: 0.3s;
+}
+
+.carrossel-image img {
+   width: 370px;
 }
 
 .carrossel-slider {
@@ -295,6 +307,10 @@ e se inicia o runners
 	height: 7.5px;
    border-radius: 50%;
 	background-color: #ff003c;
+}
+
+.carrossel-content .selected-circle {
+   background-color: #00f0ff;
 }
 
 /* 
