@@ -26,35 +26,8 @@ function cadastrar(nome, email, genero, cpf, dtNasc, senha ) {
     });
 }
 
-function definirEstadoCorpo(idUsuarioLogado) {
-    var instrucaoSql = `
-        INSERT INTO EstadoCorpo VALUES
-            (${idUsuarioLogado}, 1, 1, 0, null),
-            (${idUsuarioLogado}, 2, 1, 0, null),
-            (${idUsuarioLogado}, 3, 1, 0, null),
-            (${idUsuarioLogado}, 4, 1, 0, null),
-            (${idUsuarioLogado}, 5, 1, 0, null),
-            (${idUsuarioLogado}, 6, 1, 0, null),
-            (${idUsuarioLogado}, 7, 1, 0, null),
-            (${idUsuarioLogado}, 8, 1, 0, null),
-            (${idUsuarioLogado}, 9, 1, 0, null),
-            (${idUsuarioLogado}, 10, 1, 0, null),
-            (${idUsuarioLogado}, 11, 1, 0, null),
-            (${idUsuarioLogado}, 12, 1, 0, null),
-            (${idUsuarioLogado}, 13, 1, 0, null),
-            (${idUsuarioLogado}, 14, 1, 0, null),
-            (${idUsuarioLogado}, 15, 1, 0, null),
-            (${idUsuarioLogado}, 16, 1, 0, null),
-            (${idUsuarioLogado}, 17, 1, 0, null),
-            (${idUsuarioLogado}, 18, 1, 0, null),
-            (${idUsuarioLogado}, 19, 1, 0, null);
-    `;
-
-    return database.executar(instrucaoSql);
-}
 
 module.exports = {
     autenticar,
     cadastrar,
-    definirEstadoCorpo
 };

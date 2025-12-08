@@ -71,6 +71,8 @@ body {
    align-items: center;
    justify-content: center;
    border-radius: 5px;
+   gap: 10px;
+   padding: 10px;
    border: 1px solid #FF003C;
    background-color: #050A0E;
 }
@@ -297,4 +299,8 @@ body {
 #ImplantesInstalados li div, #ImplantesInstalados li div p {
    pointer-events: none;
    user-select: none;
+}
+
+.pintar {
+   fill: red;
 }
